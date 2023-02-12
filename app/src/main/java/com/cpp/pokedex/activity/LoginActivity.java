@@ -1,4 +1,4 @@
-package com.cpp.pokedex;
+package com.cpp.pokedex.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,16 +9,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.cpp.pokedex.R;
 import com.cpp.pokedex.models.AuthModel;
 import com.cpp.pokedex.pokeApi.PokeService;
 import com.cpp.pokedex.pokeApi.RetrofitConfig;
 import com.google.gson.JsonObject;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText user;
     EditText pass;
     PokeService pokeService;
+    AuthModel authUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
 
         user = findViewById(R.id.editTextTextUser);
         pass = findViewById(R.id.editTextPassword);
+        authUser = new AuthModel();
     }
 
     public void logar(View view){
@@ -44,32 +43,44 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setMessage("Iniciando Sessão...");
         progressDialog.show();
 
-        AuthModel authUser = new AuthModel();
         authUser.setLogin(user.getText().toString());
         authUser.setPassword(pass.getText().toString());
 
 
-        Call<String> call = new RetrofitConfig().getPokeService().logar(authUser);
-        call.enqueue(new Callback<String>() {
+        Call<JsonObject> call = new RetrofitConfig().getPokeService().logar(authUser);
+        call.enqueue(new Callback<JsonObject>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.isSuccessful()){
                     progressDialog.dismiss();
-                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                        String msg = String.valueOf(response.body().get("message"));
+                        Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("nome",authUser.getLogin());
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                        finish();
                 }else{
                     progressDialog.dismiss();
-                    Toast.makeText(LoginActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                    try {
+                        String msg = response.errorBody().string();
+                        msg = msg.substring(12,msg.length()-2);
+                        Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<JsonObject> call, Throwable t) {
                 t.printStackTrace();
+                Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-}
+        }
 
     public void registro(View view){
         Intent intent = new Intent(LoginActivity.this,RegistroActivity.class);

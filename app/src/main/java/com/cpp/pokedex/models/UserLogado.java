@@ -8,7 +8,7 @@ public class UserLogado implements Serializable {
     private String login;
     private String password;
 
-    UserLogado(){
+    public UserLogado(){
 
     }
 

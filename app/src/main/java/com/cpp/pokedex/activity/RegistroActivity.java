@@ -1,4 +1,4 @@
-package com.cpp.pokedex;
+package com.cpp.pokedex.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.cpp.pokedex.R;
 import com.cpp.pokedex.models.AuthModel;
 import com.cpp.pokedex.models.UserLogado;
 import com.cpp.pokedex.pokeApi.RetrofitConfig;
@@ -48,9 +49,14 @@ public class RegistroActivity extends AppCompatActivity {
                    progressDialog.dismiss();
                    // aqui falta passar o usarioLogado no intent
                    Intent intent = new Intent(RegistroActivity.this,MainActivity.class);
+                   Bundle bundle = new Bundle();
+                   bundle.putString("nome",authUser.getLogin());
+                   bundle.putString("id",response.body().getId());
+                   intent.putExtras(bundle);
                    startActivity(intent);
                    finish();
                }else{
+                   progressDialog.dismiss();
                    Toast.makeText(RegistroActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                }
            }

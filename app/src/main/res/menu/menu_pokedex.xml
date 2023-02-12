@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/novoPokemon"
+        android:icon="@drawable/ic_menu_add"
+        android:title="Novo Pokémon" />
+    <item
+        android:id="@+id/listarPokemon"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:title="Listar Todos" />
+
+    <item
+        android:id="@+id/tipoPokemon"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Pesquisar por Tipo" />
+    <item
+        android:id="@+id/habilidadPokemon"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Pesquisar por Habilidade" />
+    <item
+        android:id="@+id/btnLogout"
+        android:title="Logout" />
+    <item
+        android:id="@+id/bottonSair"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        android:title="Sair da Pokedex" />
+</menu>
