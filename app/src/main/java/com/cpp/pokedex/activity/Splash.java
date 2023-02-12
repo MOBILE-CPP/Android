@@ -1,4 +1,4 @@
-package com.cpp.pokedex;
+package com.cpp.pokedex.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.graphics.drawable.AnimatedVectorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
+
+import com.cpp.pokedex.R;
 
 public class Splash extends AppCompatActivity {
 
