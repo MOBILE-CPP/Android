@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cpp.pokedex.R;
 import com.cpp.pokedex.models.PokemonModel;
+import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PokeAdapter extends RecyclerView.Adapter<PokeAdapter.MyViewHolder> {
@@ -35,6 +37,7 @@ public class PokeAdapter extends RecyclerView.Adapter<PokeAdapter.MyViewHolder> 
         holder.hab02.setText(habil.get(1));
         holder.hab03.setText(habil.get(2));
         holder.hab04.setText(habil.get(3));
+        Picasso.get().load("http://10.0.2.2:5010/image/"+pokemon.getImageData()+"").into(holder.imagen);
     }
 
     @Override

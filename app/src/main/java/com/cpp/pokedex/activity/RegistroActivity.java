@@ -47,7 +47,6 @@ public class RegistroActivity extends AppCompatActivity {
            public void onResponse(Call<UserLogado> call, Response<UserLogado> response) {
                if(response.isSuccessful()){
                    progressDialog.dismiss();
-                   // aqui falta passar o usarioLogado no intent
                    Intent intent = new Intent(RegistroActivity.this,MainActivity.class);
                    Bundle bundle = new Bundle();
                    bundle.putString("nome",authUser.getLogin());
@@ -56,8 +55,10 @@ public class RegistroActivity extends AppCompatActivity {
                    startActivity(intent);
                    finish();
                }else{
+
                    progressDialog.dismiss();
-                   Toast.makeText(RegistroActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                   Toast.makeText(RegistroActivity.this, response.errorBody().source().toString().substring(6,
+                           response.errorBody().source().toString().length()-1), Toast.LENGTH_SHORT).show();
                }
            }
 
@@ -66,5 +67,11 @@ public class RegistroActivity extends AppCompatActivity {
                 t.printStackTrace();
            }
        });
+    }
+
+    public void backLogin(View view){
+      Intent i = new Intent(RegistroActivity.this,LoginActivity.class);
+      startActivity(i);
+      finish();
     }
 }
