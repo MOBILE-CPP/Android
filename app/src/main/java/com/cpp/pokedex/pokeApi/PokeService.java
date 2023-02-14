@@ -27,9 +27,5 @@ public interface PokeService {
     Call<JsonObject> logar(@Body AuthModel user);
 
     @GET("pokemon")
-    Call<JsonObject> getAllPokemons();
-
-    @GET("image")
-    Call<JsonObject> getAllImages();
-
+    Call<List<PokemonModel>> getAllPokemons();
 }
