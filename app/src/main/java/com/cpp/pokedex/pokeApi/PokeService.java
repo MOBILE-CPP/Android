@@ -1,19 +1,17 @@
 package com.cpp.pokedex.pokeApi;
 
 import com.cpp.pokedex.models.AuthModel;
+import com.cpp.pokedex.models.ImageData;
 import com.cpp.pokedex.models.PokemonModel;
 import com.cpp.pokedex.models.UserLogado;
 import com.google.gson.JsonObject;
 
-import org.w3c.dom.Text;
-
-import java.util.List;
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 public interface PokeService {
 
@@ -28,6 +26,13 @@ public interface PokeService {
 
     @GET("pokemon")
     Call<JsonObject> getAllPokemons();
+
+    @POST("pokemon")
+    Call<JsonObject> addPokemon(@Body PokemonModel pokemon);
+
+    @Multipart
+    @POST("image")
+    Call<JsonObject> addImage(@Part ImageData image);
 
     @GET("image")
     Call<JsonObject> getAllImages();
