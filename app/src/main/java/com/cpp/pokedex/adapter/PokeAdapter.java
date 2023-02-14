@@ -33,10 +33,16 @@ public class PokeAdapter extends RecyclerView.Adapter<PokeAdapter.MyViewHolder> 
         holder.nome.setText(pokemon.getName());
         holder.tipo.setText(pokemon.getType());
         List<String> habil = pokemon.getSkills();
-        holder.hab01.setText(habil.get(0));
-        holder.hab02.setText(habil.get(1));
-        holder.hab03.setText(habil.get(2));
-        holder.hab04.setText(habil.get(3));
+        if (habil.size()==1) {
+            holder.hab01.setText(habil.get(0));
+        } else if (habil.size()==2) {
+            holder.hab01.setText(habil.get(0));
+            holder.hab02.setText(habil.get(1));
+        } else if (habil.size()==3) {
+            holder.hab01.setText(habil.get(0));
+            holder.hab02.setText(habil.get(1));
+            holder.hab03.setText(habil.get(2));
+        }
         Picasso.get().load("http://10.0.2.2:5010/image/"+pokemon.getImageData()+"").into(holder.imagen);
     }
 

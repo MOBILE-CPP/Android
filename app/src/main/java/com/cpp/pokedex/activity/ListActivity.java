@@ -32,11 +32,12 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         recyclerViewPoke = findViewById(R.id.recyclerViewPoke);
-        Call<JsonObject> call = new RetrofitConfig().getPokeService().getAllPokemons();
+        Call<List<PokemonModel>> call = new RetrofitConfig().getPokeService().getAllPokemons();
         call.enqueue(new Callback<>() {
             @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+            public void onResponse(Call<List<PokemonModel>> call, Response<List<PokemonModel>> response) {
                 if(response.isSuccessful()){
+                    list = response.body();
                     PokeAdapter adapter = new PokeAdapter(list);
 
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -52,7 +53,7 @@ public class ListActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
+            public void onFailure(Call<List<PokemonModel>> call, Throwable t) {
                 t.printStackTrace();
             }
         });
