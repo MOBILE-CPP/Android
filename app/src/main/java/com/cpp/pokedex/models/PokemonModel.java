@@ -5,18 +5,18 @@ import java.util.List;
 import java.util.UUID;
 
 public class PokemonModel implements Serializable {
-    private UUID id;
+    private String id;
     private String name;
     private String type;
     private List<String> skills;
-    private ImageData imageData;
+    private int imageData;
     private String username;
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -44,11 +44,11 @@ public class PokemonModel implements Serializable {
         this.skills = skills;
     }
 
-    public ImageData getImageData() {
+    public int getImageData() {
         return imageData;
     }
 
-    public void setImageData(ImageData imageData) {
+    public void setImageData(int imageData) {
         this.imageData = imageData;
     }
 
