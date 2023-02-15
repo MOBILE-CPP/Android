@@ -9,13 +9,14 @@
         android:id="@+id/textViewTitleTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary_light"
+        android:background="#E74C3C"
         android:text=""
         android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#E74C3C"
         android:orientation="horizontal">
 
         <TextView
@@ -53,12 +54,12 @@
                 android:text=""
                 android:textSize="16sp" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/textViewHb04Top"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="TextView"-->
-<!--                android:textSize="16sp" />-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/textViewHb04Top"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:text="TextView"-->
+            <!--                android:textSize="16sp" />-->
         </LinearLayout>
 
         <ImageView

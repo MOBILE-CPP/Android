@@ -18,12 +18,12 @@
             android:layout_marginLeft="12sp"
             android:layout_marginRight="12sp"
             android:layout_weight="1"
-            android:background="#78A7EC"
-            android:backgroundTint="#3B0067FF"
+            android:background="@drawable/borderradius"
+            android:backgroundTint="#F2F2F2"
             android:paddingLeft="8sp"
             android:paddingRight="8sp"
             android:text="Nome:"
-            android:textColor="@color/quternary"
+            android:textColor="#3F3D56"
             android:textSize="20sp" />
 
     </LinearLayout>
