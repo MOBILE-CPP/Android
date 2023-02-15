@@ -170,24 +170,36 @@ public class MainActivity extends AppCompatActivity {
 
     public void novoPokemon(){
         Intent intent = new Intent(MainActivity.this,NewpokActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("nome",userLogado.getLogin());
+        intent.putExtras(bundle);
         startActivity(intent);
         finish();
     }
 
     public void listarPokemon(){
         Intent intent = new Intent(MainActivity.this,ListActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("nome",userLogado.getLogin());
+        intent.putExtras(bundle);
         startActivity(intent);
         finish();
     }
 
     public void tipoPokemon(){
         Intent intent = new Intent(MainActivity.this,TypeActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("nome",userLogado.getLogin());
+        intent.putExtras(bundle);
         startActivity(intent);
         finish();
     }
 
     public void habilidadPokemon(){
         Intent intent = new Intent(MainActivity.this,HabilityActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("nome",userLogado.getLogin());
+        intent.putExtras(bundle);
         startActivity(intent);
         finish();
     }

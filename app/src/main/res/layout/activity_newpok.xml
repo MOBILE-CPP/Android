@@ -4,41 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FB1B1B"
+    android:background="#A6A6A6"
     tools:context=".activity.NewpokActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
         android:ellipsize="none"
         android:fontFamily="sans-serif-black"
         android:shadowColor="#0A285F"
-        android:shadowDx="3"
-        android:shadowDy="3"
-        android:shadowRadius="15"
+        android:shadowRadius="5"
         android:text="Cadastro de Pokémon"
         android:textColor="#0075BE"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
+        android:layout_width="0dp"
+        android:layout_height="506dp"
+        android:layout_marginTop="40dp"
         android:gravity="fill"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
             android:layout_width="match_parent"
@@ -48,14 +41,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="Nome"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="201dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="Tipo"
                 android:textStyle="bold" />
@@ -71,6 +66,7 @@
                 android:id="@+id/editTextName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
@@ -78,6 +74,7 @@
                 android:id="@+id/editTextTipo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
@@ -89,68 +86,91 @@
             android:minHeight="40sp">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="Habilidades Conhecidas (Máx. 3)"
-                android:textStyle="bold" />
-
-            <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="Foto"
                 android:textStyle="bold" />
         </TableRow>
 
         <TableRow
-            android:layout_width="378dp"
+            android:id="@+id/tableRow"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:minHeight="40sp">
+            android:gravity="center_horizontal|center_vertical"
+            android:padding="8sp">
 
-            <EditText
-                android:id="@+id/editTextHabilidades"
-                android:layout_width="142dp"
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
+                android:layout_gravity="end"
+                android:background="@drawable/border"
+                android:minWidth="100sp"
+                android:minHeight="100sp"
+                android:scaleType="fitXY" />
 
             <ImageButton
                 android:id="@+id/imageButton"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FB1B1B"
+                android:layout_gravity="start|center_vertical"
+                android:backgroundTint="#28FD0000"
                 app:srcCompat="@android:drawable/ic_menu_camera" />
 
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow"
-            android:layout_width="209dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingRight="20sp">
+            android:ellipsize="end"
+            android:maxLines="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Habilidades Conhecidas (Máx. 3)"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ellipsize="end"
+            android:maxLines="1">
+
+            <EditText
+                android:id="@+id/editTextHabilidades"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="textPersonName" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ellipsize="end"
+            android:gravity="center_horizontal|center_vertical"
+            android:maxLines="1">
 
             <Button
                 android:id="@+id/button"
-                android:layout_height="wrap_content"
-                android:layout_margin="20sp"
-                android:width="90sp"
-                android:backgroundTint="#DFDFDF"
-                android:minWidth="0sp"
-                android:text="Adicionar habilidade"
-                android:textAllCaps="false"
-                android:textColor=" #000000"
-                android:textSize="15sp" />
-
-            <ImageView
-                android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="6sp"
-                android:background="#00FFFFFF"
-                android:scaleType="fitXY" />
-
+                android:layout_margin="10sp"
+                android:backgroundTint="@color/primary_light"
+                android:gravity="center"
+                android:text="Adicionar habilidade"
+                android:textAllCaps="false"
+                android:textColor="#0075BE"
+                android:textSize="15sp" />
         </TableRow>
 
         <TableRow
@@ -160,52 +180,71 @@
             <ListView
                 android:id="@+id/listView"
                 android:layout_width="match_parent"
-                android:layout_height="130sp" />
+                android:layout_height="120sp"
+                android:layout_weight="1"
+                android:scrollbarSize="8dp"
+                android:scrollbarStyle="insideOverlay" />
 
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Seu nome:"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/cadastrar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40sp"
-                android:layout_marginRight="40sp"
-                android:layout_span="2"
-                android:backgroundTint="#DFDFDF"
-                android:onClick="cadastrar"
-                android:text="Cadastrar"
-                android:textAllCaps="false"
-                android:textColor=" #000000"
-                tools:layout_conversion_absoluteHeight="48dp"
-                tools:layout_conversion_absoluteWidth="210dp"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="468dp" />
-        </TableRow>
     </TableLayout>
+
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:background="#00FFFFFF"
+        android:onClick="voltar"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="start"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="48dp"
+        android:text="Seu nome:"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/cadastrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="@color/primary_light"
+        android:gravity="center_horizontal|center_vertical"
+        android:onClick="cadastrar"
+        android:text="Cadastrar"
+        android:textAllCaps="false"
+        android:textColor="#0075BE"
+        app:layout_constraintStart_toStartOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        tools:layout_conversion_absoluteHeight="48dp"
+        tools:layout_conversion_absoluteWidth="210dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

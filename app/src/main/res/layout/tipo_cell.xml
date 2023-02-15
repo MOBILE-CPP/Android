@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primary_light"
-        android:text="TextView"
+        android:text=""
         android:textSize="20sp" />
 
     <LinearLayout
@@ -36,21 +36,21 @@
                 android:id="@+id/textViewHb01Top"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text=""
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewHb02Top"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text=""
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewHb03Top"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text=""
                 android:textSize="16sp" />
 
 <!--            <TextView-->
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingEnd="10dp"
-                android:text="TextView" />
+                android:text="" />
         </LinearLayout>
 
     </LinearLayout>
