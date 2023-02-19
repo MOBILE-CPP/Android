@@ -3,6 +3,7 @@ package com.cpp.pokedex.pokeApi;
 import android.graphics.Bitmap;
 import android.net.Uri;
 
+import com.cpp.pokedex.models.ApiResponse;
 import com.cpp.pokedex.models.AuthModel;
 import com.cpp.pokedex.models.ImageData;
 import com.cpp.pokedex.models.Nomes;
@@ -25,13 +26,13 @@ import retrofit2.http.Query;
 public interface PokeService {
 
     @GET("auth")
-    Call<JsonObject> getFullUsers();
+    Call<ApiResponse> getFullUsers();
 
     @POST("auth")
-    Call<UserLogado> addUser(@Body AuthModel user);
+    Call<ApiResponse> addUser(@Body AuthModel user);
 
     @POST("auth/login")
-    Call<JsonObject> logar(@Body AuthModel user);
+    Call<ApiResponse> logar(@Body AuthModel user);
 
     @GET("pokemon")
     Call<List<PokemonModel>> getAllPokemons();

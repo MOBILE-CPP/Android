@@ -10,9 +10,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.cpp.pokedex.R;
+import com.cpp.pokedex.models.ApiResponse;
 import com.cpp.pokedex.models.AuthModel;
 import com.cpp.pokedex.models.UserLogado;
 import com.cpp.pokedex.pokeApi.RetrofitConfig;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,32 +49,51 @@ public class RegistroActivity extends AppCompatActivity {
         authUser.setLogin(usuario.getText().toString());
         authUser.setPassword(senha.getText().toString());
 
-        Call<UserLogado> call = new RetrofitConfig().getPokeService().addUser(authUser);
-       call.enqueue(new Callback<UserLogado>() {
-           @Override
-           public void onResponse(Call<UserLogado> call, Response<UserLogado> response) {
-               if(response.isSuccessful()){
-                   progressDialog.dismiss();
-                   Intent intent = new Intent(RegistroActivity.this,MainActivity.class);
-                   Bundle bundle = new Bundle();
-                   bundle.putString("nome",authUser.getLogin());
-                   bundle.putString("id",response.body().getId());
-                   intent.putExtras(bundle);
-                   startActivity(intent);
-                   finish();
-               }else{
+        Call<ApiResponse> resp = new RetrofitConfig().getPokeService().addUser(authUser);
+        resp.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                ApiResponse r = response.body();
+                if(response.isSuccessful()){
+                    progressDialog.dismiss();
+                    Toast.makeText(RegistroActivity.this, r.getMessage(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RegistroActivity.this,MainActivity.class);
+                    Bundle bundle = new Bundle();
+                    Gson gson = new Gson();
+                    String json = gson.toJson(r.getData());
+                    JSONObject jsonObject = null;
+                    try {
+                        jsonObject = new JSONObject(json);
+                        bundle.putString("nome",jsonObject.getString("login"));
+                        bundle.putString("id",jsonObject.getString("id"));
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                        finish();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(RegistroActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
 
-                   progressDialog.dismiss();
-                   Toast.makeText(RegistroActivity.this, response.errorBody().source().toString().substring(6,
-                           response.errorBody().source().toString().length()-1), Toast.LENGTH_SHORT).show();
-               }
-           }
+                }else{
+                    progressDialog.dismiss();
+                    try {
+                        String er = response.errorBody().string();
+                        JSONObject jsonObject = new JSONObject(er);
+                        Toast.makeText(RegistroActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                    } catch (IOException | JSONException e) {
+                        e.printStackTrace();
+                    }
 
-           @Override
-           public void onFailure(Call<UserLogado> call, Throwable t) {
-                t.printStackTrace();
-           }
-       });
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+
+            }
+        });
+
+
     }
 
     public void backLogin(View view){
