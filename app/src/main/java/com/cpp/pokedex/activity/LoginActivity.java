@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.cpp.pokedex.R;
+import com.cpp.pokedex.models.ApiResponse;
 import com.cpp.pokedex.models.AuthModel;
 import com.cpp.pokedex.pokeApi.PokeService;
 import com.cpp.pokedex.pokeApi.RetrofitConfig;
@@ -46,40 +47,31 @@ public class LoginActivity extends AppCompatActivity {
         authUser.setLogin(user.getText().toString());
         authUser.setPassword(pass.getText().toString());
 
-
-        Call<JsonObject> call = new RetrofitConfig().getPokeService().logar(authUser);
-        call.enqueue(new Callback<JsonObject>() {
+        Call<ApiResponse> resp = new RetrofitConfig().getPokeService().logar(authUser);
+        resp.enqueue(new Callback<ApiResponse>() {
             @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 if(response.isSuccessful()){
                     progressDialog.dismiss();
-                        String msg = String.valueOf(response.body().get("message"));
-                        Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putString("nome",authUser.getLogin());
-                        intent.putExtras(bundle);
-                        startActivity(intent);
-                        finish();
+                    Toast.makeText(LoginActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("nome",authUser.getLogin());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                    finish();
                 }else{
                     progressDialog.dismiss();
-                    try {
-                        String msg = response.errorBody().string();
-                        msg = msg.substring(12,msg.length()-2);
-                        Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
-                    } catch (IOException e) {
-                        Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-
+                    Toast.makeText(LoginActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                t.printStackTrace();
-                Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+
             }
         });
+
         }
 
     public void registro(View view){

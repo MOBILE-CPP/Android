@@ -13,6 +13,8 @@ import com.cpp.pokedex.R;
 import com.cpp.pokedex.models.PokemonModel;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PokeAdapterDashboard extends RecyclerView.Adapter<PokeAdapterDashboard.MyViewHolder> {
@@ -32,18 +34,10 @@ public class PokeAdapterDashboard extends RecyclerView.Adapter<PokeAdapterDashbo
         holder.nome.setText(pokemon.getName());
         holder.tipo.setText(pokemon.getType());
         List<String> habil = pokemon.getSkills();
-        if (habil.size()==1) {
-            holder.hab01.setText(habil.get(0));
-        } else if (habil.size()==2) {
-            holder.hab01.setText(habil.get(0));
-            holder.hab02.setText(habil.get(1));
-        } else if (habil.size()==3) {
-            holder.hab01.setText(habil.get(0));
-            holder.hab02.setText(habil.get(1));
-            holder.hab03.setText(habil.get(2));
-        }
-//        holder.hab04.setText(habil.get(3));
-//        holder.usuario.setText(pokemon.getUsername());
+        List<TextView> habilitys = Arrays.asList(new TextView[]{holder.hab01, holder.hab02, holder.hab03});
+        for(int i=0;i<habil.size();i++)
+            habilitys.get(i).setText(habil.get(i));
+        holder.usuario.setText(pokemon.getUsername());
         String url = "http://10.0.2.2:5010/image/"+pokemon.getImageData();
         Picasso.get().load(url).into(holder.imagen);
     }

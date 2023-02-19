@@ -44,7 +44,7 @@ public class ListActivity extends AppCompatActivity {
 
         recyclerViewPoke = findViewById(R.id.recyclerViewPoke);
         Call<List<PokemonModel>> call = new RetrofitConfig().getPokeService().getAllPokemons();
-        call.enqueue(new Callback<>() {
+        call.enqueue(new Callback<List<PokemonModel>>() {
             @Override
             public void onResponse(Call<List<PokemonModel>> call, Response<List<PokemonModel>> response) {
                 if(response.isSuccessful()){
