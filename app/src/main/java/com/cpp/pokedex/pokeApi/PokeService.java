@@ -1,7 +1,11 @@
 package com.cpp.pokedex.pokeApi;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
+
 import com.cpp.pokedex.models.AuthModel;
 import com.cpp.pokedex.models.ImageData;
+import com.cpp.pokedex.models.Nomes;
 import com.cpp.pokedex.models.PokemonModel;
 import com.cpp.pokedex.models.UserLogado;
 import com.google.gson.JsonObject;
@@ -40,11 +44,8 @@ public interface PokeService {
     Call<Integer> addImage(@Part MultipartBody.Part filePart);
 
     @GET("pokemon/search/type")
-    Call<List<PokemonModel>> findByType(@Query("type") String type);
+    Call<Nomes> findByType(@Query("type") String type);
 
-    @GET("image")
-    Call<JsonObject> getAllImages();
-
-    @GET("pokemon/search/skill/{skill}")
-    Call<List<PokemonModel>> findBySkill(@Path("skill") String skill);
+    @GET("pokemon/search/skill")
+    Call<Nomes> findBySkill(@Query("skill") String skill);
 }

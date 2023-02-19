@@ -1,5 +1,7 @@
 package com.cpp.pokedex.adapter;
 
+import android.annotation.SuppressLint;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +16,6 @@ import com.cpp.pokedex.R;
 import com.cpp.pokedex.models.PokemonModel;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PokeAdapter extends RecyclerView.Adapter<PokeAdapter.MyViewHolder> {
@@ -27,6 +28,7 @@ public class PokeAdapter extends RecyclerView.Adapter<PokeAdapter.MyViewHolder> 
         return new MyViewHolder(item);
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         PokemonModel pokemon = lista.get(position);
@@ -43,7 +45,7 @@ public class PokeAdapter extends RecyclerView.Adapter<PokeAdapter.MyViewHolder> 
             holder.hab02.setText(habil.get(1));
             holder.hab03.setText(habil.get(2));
         }
-        Picasso.get().load("http://10.0.2.2:5010/image/"+pokemon.getImageData()+"").into(holder.imagen);
+        Picasso.get().load("http://10.0.2.2:8480/image/"+pokemon.getImageData()+"").placeholder(R.drawable.pokeball).into(holder.imagen);
     }
 
     @Override

@@ -11,8 +11,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.cpp.pokedex.R;
-import com.cpp.pokedex.adapter.PokeAdapter;
+import com.cpp.pokedex.adapter.FilterAdapter;
+import com.cpp.pokedex.models.Nomes;
 import com.cpp.pokedex.models.PokemonModel;
+import com.cpp.pokedex.models.UserLogado;
 import com.cpp.pokedex.pokeApi.RetrofitConfig;
 
 import java.util.ArrayList;
@@ -23,34 +25,40 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HabilityActivity extends AppCompatActivity {
-
     private RecyclerView recyclerViewPoke;
     private List<PokemonModel> list = new ArrayList<>();
     private EditText skill;
+    private UserLogado userLogado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hability);
+        recyclerViewPoke = findViewById(R.id.recyclerViewPokeType);
+        Bundle b = getIntent().getExtras();
+        String nome = b.getString("nome");
+        userLogado = new UserLogado();
+        userLogado.setLogin(nome);
+        if(b.getString("id") != null){
+            userLogado.setId(b.getString("id"));
+        }
     }
     public void search(View view){
-        skill = findViewById(R.id.skill);
+        skill = findViewById(R.id.type);
         String hab = skill.getText().toString();
         System.out.println(hab);
-        Call<List<PokemonModel>> call = new RetrofitConfig().getPokeService().findBySkill(hab);
-        call.enqueue(new Callback<List<PokemonModel>>() {
+        Call<Nomes> call = new RetrofitConfig().getPokeService().findBySkill(hab);
+        call.enqueue(new Callback<Nomes>() {
             @Override
-            public void onResponse(Call<List<PokemonModel>> call, Response<List<PokemonModel>> response) {
+            public void onResponse(Call<Nomes> call, Response<Nomes> response) {
                 if(response.isSuccessful()){
-                    list = response.body();
-
-                    PokeAdapter adapter = new PokeAdapter(list);
-                    recyclerViewPoke = findViewById(R.id.recyclerViewPoke);
+                    Nomes list = new Nomes(response.body().getNomes());
+                    FilterAdapter adapter = new FilterAdapter(list);
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
                     recyclerViewPoke.setLayoutManager(layoutManager);
                     recyclerViewPoke.setHasFixedSize(true);
                     recyclerViewPoke.setAdapter(adapter);
                 }else{
-                    Toast.makeText(HabilityActivity.this, "Erro ao listar os pokémons " + response.errorBody(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HabilityActivity.this, "Habilidade não encontrada!", Toast.LENGTH_SHORT).show();
                     //Intent intent = new Intent(HabilityActivity.this,MainActivity.class);
                     //startActivity(intent);
                     //finish();
@@ -58,9 +66,17 @@ public class HabilityActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<PokemonModel>> call, Throwable t) {
+            public void onFailure(Call<Nomes> call, Throwable t) {
                 t.printStackTrace();
             }
         });
+    }
+    public void voltar(View view){
+        Intent intent = new Intent(HabilityActivity.this, MainActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("nome",userLogado.getLogin());
+        intent.putExtras(bundle);
+        startActivity(intent);
+        finish();
     }
 }

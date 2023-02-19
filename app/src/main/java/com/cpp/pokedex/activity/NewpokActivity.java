@@ -27,6 +27,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import com.cpp.pokedex.models.PokemonModel;
 import com.cpp.pokedex.models.ImageData;
+import com.cpp.pokedex.models.UserLogado;
 import com.cpp.pokedex.pokeApi.RetrofitConfig;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -54,12 +55,21 @@ public class NewpokActivity extends AppCompatActivity {
     private final int GALLERY_REQ_CODE = 1000;
     private EditText nome, tipo,username;
     private Intent imgData;
+    UserLogado userLogado;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newpok);
+
+        Bundle b = getIntent().getExtras();
+        String nome = b.getString("nome");
+        userLogado = new UserLogado();
+        userLogado.setLogin(nome);
+        if(b.getString("id") != null){
+            userLogado.setId(b.getString("id"));
+        }
 
         listView = findViewById(R.id.listView);
         button = findViewById(R.id.button);
@@ -228,6 +238,15 @@ public class NewpokActivity extends AppCompatActivity {
                 cursor.close();
             }
         }
+    }
+
+    public void voltar(View view){
+        Intent intent = new Intent(NewpokActivity.this, MainActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("nome",userLogado.getLogin());
+        intent.putExtras(bundle);
+        startActivity(intent);
+        finish();
     }
 
 }
