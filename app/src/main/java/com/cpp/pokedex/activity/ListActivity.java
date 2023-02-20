@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -35,9 +37,11 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         Bundle b = getIntent().getExtras();
-        String nome = b.getString("nome");
-        userLogado = new UserLogado();
-        userLogado.setLogin(nome);
+        if(b != null){
+            String nome = b.getString("nome");
+            userLogado = new UserLogado();
+            userLogado.setLogin(nome);
+        }
         if(b.getString("id") != null){
             userLogado.setId(b.getString("id"));
         }
@@ -70,8 +74,86 @@ public class ListActivity extends AppCompatActivity {
 
     }
 
-    public void voltar(View view){
-        Intent intent = new Intent(ListActivity.this, MainActivity.class);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_pokedex, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.home:
+                Intent intent = new Intent(ListActivity.this, MainActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("nome",userLogado.getLogin());
+                intent.putExtras(bundle);
+                startActivity(intent);
+                finish();
+                return true;
+
+            case R.id.novoPokemon:
+
+                novoPokemon();
+                return true;
+
+            case R.id.listarPokemon:
+
+                return true;
+
+            case R.id.tipoPokemon:
+
+                tipoPokemon();
+
+                return true;
+
+            case R.id.habilidadPokemon:
+
+                habilidadPokemon();
+
+                return true;
+
+            case R.id.btnLogout:
+
+                Intent i = new Intent(ListActivity.this,LoginActivity.class);
+                startActivity(i);
+                finish();
+
+                return true;
+            case R.id.bottonSair:
+
+                finishAndRemoveTask();
+
+                return true;
+
+            default:
+
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    public void novoPokemon(){
+        Intent intent = new Intent(ListActivity.this,NewpokActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("nome",userLogado.getLogin());
+        intent.putExtras(bundle);
+        startActivity(intent);
+        finish();
+    }
+
+
+    public void tipoPokemon(){
+        Intent intent = new Intent(ListActivity.this,TypeActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("nome",userLogado.getLogin());
+        intent.putExtras(bundle);
+        startActivity(intent);
+        finish();
+    }
+
+    public void habilidadPokemon(){
+        Intent intent = new Intent(ListActivity.this,HabilityActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("nome",userLogado.getLogin());
         intent.putExtras(bundle);

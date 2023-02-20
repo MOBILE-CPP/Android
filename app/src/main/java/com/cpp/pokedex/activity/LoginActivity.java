@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                 }else{
                     progressDialog.dismiss();
-                    Toast.makeText(LoginActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, response.errorBody().source().toString(), Toast.LENGTH_SHORT).show();
                 }
             }
 
