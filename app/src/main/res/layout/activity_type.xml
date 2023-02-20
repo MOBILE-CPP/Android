@@ -1,76 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E74C3C"
-    tools:context=".activity.TypeActivity">
+    android:orientation="vertical"
+    tools:context=".activity.TypeActivity"
+    tools:menu="@menu/menu_pokedex">
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:layout_marginBottom="102dp"
-        android:background="#00FFFFFF"
+        android:background="@color/quternary"
         android:gravity="center_horizontal"
         android:text="Lista de Pokémons por tipo"
-        android:textColor="#3F3D56"
+        android:textColor="@color/primary_light"
         android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerViewPokeType"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/type"
-        android:layout_width="wrap_content"
+        android:id="@+id/editTextHability"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="1dp"
-        android:ems="10"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/primary_light"
+        android:hint="Digita o tipo do Pokémon para pesquisar"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/search"
-        app:layout_constraintStart_toStartOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        android:minHeight="48sp"
+        android:textColor="@color/quternary" />
 
     <Button
         android:id="@+id/search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
-        android:backgroundTint="#FFBB12"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/terciary"
+        android:minWidth="150dp"
         android:onClick="search"
         android:text="Pesquisar"
         android:textAllCaps="false"
-        android:textColor="#3F3D56"
-        app:layout_constraintEnd_toEndOf="@+id/type"
-        app:layout_constraintTop_toBottomOf="@+id/type" />
+        android:textColor="@color/primary_light" />
+
+    <View
+        android:id="@+id/divider7"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/white" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewPokeType"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        android:layout_marginBottom="1dp" />
 
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="9dp"
-        android:background="#00FFFFFF"
-        android:onClick="voltar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

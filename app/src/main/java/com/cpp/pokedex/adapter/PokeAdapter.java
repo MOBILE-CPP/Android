@@ -45,7 +45,8 @@ public class PokeAdapter extends RecyclerView.Adapter<PokeAdapter.MyViewHolder> 
             holder.hab02.setText(habil.get(1));
             holder.hab03.setText(habil.get(2));
         }
-        Picasso.get().load("http://10.0.2.2:8480/image/"+pokemon.getImageData()+"").placeholder(R.drawable.pokeball).into(holder.imagen);
+        holder.usuario.setText(pokemon.getUsername());
+        Picasso.get().load("http://10.0.2.2:5010/image/"+pokemon.getImageData()+"").placeholder(R.drawable.pokeball).into(holder.imagen);
     }
 
     @Override
@@ -61,6 +62,7 @@ public class PokeAdapter extends RecyclerView.Adapter<PokeAdapter.MyViewHolder> 
         TextView hab02;
         TextView hab03;
         TextView hab04;
+        TextView usuario;
         ImageView imagen;
 
         public MyViewHolder(@NonNull View itemView){
@@ -72,6 +74,7 @@ public class PokeAdapter extends RecyclerView.Adapter<PokeAdapter.MyViewHolder> 
             hab03 = itemView.findViewById(R.id.textViewHab03);
             hab04 = itemView.findViewById(R.id.textViewHab04);
             imagen = itemView.findViewById(R.id.imageView);
+            usuario = itemView.findViewById(R.id.textViewuserCell);
 
         }
 

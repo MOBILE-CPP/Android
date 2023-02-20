@@ -4,22 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E74C3C"
-    tools:context=".activity.NewpokActivity">
+    android:background="@color/primary"
+    tools:context=".activity.NewpokActivity"
+    tools:menu="@menu/menu_pokedex">
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="410dp"
+        android:layout_height="34dp"
+        android:background="@color/quternary"
         android:ellipsize="none"
         android:fontFamily="sans-serif-black"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
         android:text="Cadastro de Pokémon"
-        android:textColor="#3F3D56"
+        android:textAlignment="center"
+        android:textColor="@color/primary_light"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TableLayout
         android:id="@+id/tableLayout"
@@ -40,9 +46,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@color/quternary"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="Nome"
-                android:textColor="#3F3D56"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
 
             <TextView
@@ -50,9 +57,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@color/quternary"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="Tipo"
-                android:textColor="#3F3D56"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
 
         </TableRow>
@@ -66,18 +74,26 @@
                 android:id="@+id/editTextName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_weight="1"
+                android:background="@color/primary_light"
                 android:ems="10"
+                android:hint="Pokénome"
                 android:inputType="textPersonName"
+                android:minHeight="48sp"
                 android:textColor="#3F3D56" />
 
             <EditText
                 android:id="@+id/editTextTipo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
+                android:background="@color/primary_light"
                 android:ems="10"
+                android:hint="Pokétipo"
                 android:inputType="textPersonName"
+                android:minHeight="48sp"
                 android:textColor="#3F3D56" />
 
         </TableRow>
@@ -92,9 +108,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@color/quternary"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="Foto"
-                android:textColor="#3F3D56"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
         </TableRow>
 
@@ -119,7 +136,8 @@
                 android:id="@+id/imageButton"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|center_vertical"
-                android:backgroundTint="#28FD0000"
+                android:backgroundTint="@color/primary_light"
+                android:contentDescription="Add Image"
                 app:srcCompat="@android:drawable/ic_menu_camera" />
 
         </TableRow>
@@ -134,9 +152,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@color/quternary"
                 android:gravity="center"
                 android:text="Habilidades Conhecidas (Máx. 3)"
-                android:textColor="#3F3D56"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </TableRow>
@@ -150,10 +169,15 @@
             <EditText
                 android:id="@+id/editTextHabilidades"
                 android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
+                android:background="@color/primary_light"
                 android:ems="10"
                 android:gravity="center"
+                android:hint="Habilidade do Pokémon"
                 android:inputType="textPersonName"
+                android:minHeight="48sp"
                 android:textColor="#3F3D56" />
 
         </TableRow>
@@ -166,7 +190,7 @@
             android:maxLines="1">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/entraButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10sp"
@@ -174,7 +198,7 @@
                 android:gravity="center"
                 android:text="Adicionar habilidade"
                 android:textAllCaps="false"
-                android:textColor="#3F3D56"
+                android:textColor="@color/primary_light"
                 android:textSize="15sp" />
         </TableRow>
 
@@ -195,25 +219,31 @@
     </TableLayout>
 
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:background="#00FFFFFF"
-        android:onClick="voltar"
-        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
+    <!--    <ImageButton-->
+    <!--        android:id="@+id/imageButton2"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="16dp"-->
+    <!--        android:background="@color/primary_light"-->
+    <!--        android:contentDescription="Back"-->
+    <!--        android:minWidth="48dp"-->
+    <!--        android:minHeight="48dp"-->
+    <!--        android:onClick="voltar"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/tableLayout"-->
+    <!--        app:layout_constraintEnd_toStartOf="@+id/textView"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:srcCompat="?attr/actionModeCloseDrawable" />-->
 
     <EditText
         android:id="@+id/username"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="48sp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
+        android:background="@color/primary_light"
         android:gravity="start"
+        android:hint="Nome de Usuario"
         android:inputType="textPersonName"
         android:textColor="#3F3D56"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -229,7 +259,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="48dp"
         android:text="Seu nome:"
-        android:textColor="#3F3D56"
+        android:textColor="@color/primary_light"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -240,16 +270,17 @@
         android:id="@+id/cadastrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="20dp"
         android:backgroundTint="#1BB55C"
         android:gravity="center_horizontal|center_vertical"
         android:onClick="cadastrar"
         android:text="Cadastrar"
         android:textAllCaps="false"
-        android:textColor="#3F3D56"
-        app:layout_constraintStart_toStartOf="@+id/username"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username"
         tools:layout_conversion_absoluteHeight="48dp"
         tools:layout_conversion_absoluteWidth="210dp" />
 

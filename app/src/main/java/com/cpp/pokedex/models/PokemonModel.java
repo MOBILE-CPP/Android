@@ -12,6 +12,18 @@ public class PokemonModel implements Serializable {
     private int imageData;
     private String username;
 
+    public PokemonModel(){
+
+    }
+
+    public PokemonModel(String name, String type, List<String> skills, int imageData, String username) {
+        this.name = name;
+        this.type = type;
+        this.skills = skills;
+        this.imageData = imageData;
+        this.username = username;
+    }
+
     public String getId() {
         return id;
     }

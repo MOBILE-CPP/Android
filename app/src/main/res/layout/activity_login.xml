@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layouLogin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
@@ -56,13 +57,16 @@
                 android:id="@+id/editTextTextUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/white"
                 android:ems="10"
                 android:hint="Usuario"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textColorHint="@color/terciary" />
 
             <TextView
@@ -79,33 +83,37 @@
                 android:id="@+id/editTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/white"
                 android:ems="10"
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textColorHint="@color/terciary" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/entraButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/quternary"
+                android:backgroundTint="@color/terciary"
                 android:onClick="logar"
-                android:text="Entrar" />
+                android:text="Entrar"
+                android:textColor="@color/white" />
 
             <View
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
 
                 android:layout_height="1dp"
-                android:background="?android:attr/listDivider" />
+                android:background="@color/white" />
 
             <TextView
                 android:id="@+id/textView"
@@ -119,13 +127,13 @@
                 android:textSize="14sp" />
 
             <Button
-                android:id="@+id/getAll"
+                android:id="@+id/registarButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/quternary"
+                android:backgroundTint="@color/terciary"
                 android:onClick="registro"
                 android:text="Registrar" />
         </LinearLayout>

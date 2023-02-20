@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_main);
         Bundle b = getIntent().getExtras();
         String nome = b.getString("nome");
         userLogado = new UserLogado();
@@ -66,8 +66,6 @@ public class MainActivity extends AppCompatActivity {
         if(b.getString("id") != null){
             userLogado.setId(b.getString("id"));
         }
-
-        setContentView(R.layout.activity_main);
         userName = findViewById(R.id.textViewUserDash);
         userName.setText(userLogado.getLogin());
 
@@ -80,11 +78,8 @@ public class MainActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     listaTotal = response.body();
                     qtd = findViewById(R.id.textViewQuantidade);
-                    recyclerH = findViewById(R.id.reciclerViewHome);
                     String qt = String.valueOf(listaTotal.size());
                     qtd.setText(qt);
-
-
 
                     Map<String, Integer> typeCounts = new HashMap<>();
                     Map<String, Integer> abilityCounts = new HashMap<>();
@@ -169,7 +164,8 @@ public class MainActivity extends AppCompatActivity {
                     habTop2.setText(topAbilities.get(1) +" - "+countAbility2);
                     habTop3.setText(topAbilities.get(2) +" - "+countAbility3);
                     recyclerH = findViewById(R.id.reciclerViewHome);
-                    pokeAdapterH = new PokeAdapter(listaTotal);
+                    List<PokemonModel> lista5 = listaTotal.subList(1,5);
+                    pokeAdapterH = new PokeAdapter(lista5);
                     RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(getApplicationContext());
                     recyclerH.setLayoutManager(layoutManager2);
                     recyclerH.setHasFixedSize(true);
@@ -202,6 +198,10 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+
+            case R.id.home:
+
+                return true;
 
             case R.id.novoPokemon:
 
